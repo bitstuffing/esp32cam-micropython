@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## This script will install and compile the requirements for ESP32-CAM to get
-## a working firmware of the last micropython framwork in this board 
+## a working firmware of the lastest micropython framwork in this board 
 ## Author @bitstuffing , in development, showing the work with love
 
 #first step is extracted from https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/linux-macos-setup.html
@@ -16,9 +16,12 @@ cd esp-idf
 #git submodule update --init --recursive
 
 #patch /components/xtensa/include/xtensa-debug-module.h -> add #define XCHAL_NUM_PERF_COUNTERS 2
+git checkout components/xtensa/include/xtensa-debug-module.h
+sed -i '1i #define XCHAL_NUM_PERF_COUNTERS 2' components/xtensa/include/xtensa-debug-module.h
 
-. $HOME/esp/esp-idf/install.sh
-. $HOME/esp/esp-idf/export.sh
+cd ~/esp/esp-idf/
+./install.sh
+. ./export.sh
 
 #all next steps are extracted from https://github.com/lemariva/micropython-camera-driver
 
@@ -27,15 +30,17 @@ git clone https://github.com/espressif/esp32-camera.git
 
 cd ~/esp/
 git clone https://github.com/lemariva/micropython-camera-driver.git
+
+mkdir ~/esp/micropython
+cd ~/esp/micropython
+git clone --recursive https://github.com/micropython/micropython.git .
+
+#patch micropython with the driver requirements
 #ln -s $HOME/esp/micropython-camera-driver/boards/ESP32_CAM $HOME/esp/micropython/ports/esp32/boards/ESP32_CAM
 #rename in micropython-camera-driver/src/modcamera.c MP_REGISTER_MODULE(MP_QSTR_camera, mp_module_camera_system); (end) to remove last argument - MP_REGISTER_MODULE(MP_QSTR_camera, mp_module_camera_system, MODULE_CAMERA_ENABLED);
 #and his declaration on ~/esp/micropython/ports/esp32/build-ESP32_CAM/genhdr/moduledefs.h (remove bad (1) argument)
 cp -R $HOME/esp/micropython-camera-driver/boards/ESP32_CAM $HOME/esp/micropython/ports/esp32/boards/ESP32_CAM
 sed -i 's/MP_REGISTER_MODULE(MP_QSTR_camera, mp_module_camera_system, MODULE_CAMERA_ENABLED);/MP_REGISTER_MODULE(MP_QSTR_camera, mp_module_camera_system);/g' $HOME/esp/micropython-camera-driver/src/modcamera.c
-
-mkdir ~/esp/micropython
-cd ~/esp/micropython
-git clone --recursive https://github.com/micropython/micropython.git .
 
 cd ~/esp/micropython/ports/esp32
 #some issues related to xtensa binaries, force this information to idf.py with system environment variable
