@@ -1,17 +1,21 @@
 # Micropython for ESP32-CAM
 
-This script will compile and flash a fresh micropython into an ESP32-CAM with the following ![driver](https://github.com/lemariva/micropython-camera-driver)
+Simple tools to get a fresh micropython firmware for esp32-cam.
+
+Internally you have a script, which you're able to use, which will compile and flash a fresh micropython into an ESP32-CAM with the following ![driver](https://github.com/lemariva/micropython-camera-driver)
+
 This will be the most recently base to get your scripts working on ESP32-CAM throw Thonny or ME editor (which supports micropython and an agile development)
 
 ## Status
 
-Current status is "in development". Take it into account.
+Current status is "in development", take it into account. Some new features will be available soon.
 
 ## Why
 
 - I want the last revision of Micropython in this board, and this board needs this driver to get camera working. So... this development has a mandatory requirement.
 - I want to use this board to a pretty project that one friend requires to me. And I want he understands all code, what kind of perfect solution will be micropython for that?
 - I want to use the last GitHub improves to offer the lastest firmware.
+- I want an easy tool. It's not enough (at least for me) known how all works, and it's important all people know how all works.
 
 ## Problems, problems everywhere
 
