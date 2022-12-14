@@ -28,11 +28,11 @@ def Home(parent):
     line += TITLE_SIZE * 3
     drawCenteredCanvasText(canvas,"This is a program for ESP32-CAM",line,SUBTITLE_SIZE,SUBSCREEN_WIDTH)
     line += TITLE_SIZE * 4
-    drawCenteredCanvasText(canvas,"You're able to launch scripts from this console",line,NORMAL_TEXT_SIZE,SUBSCREEN_WIDTH)
+    drawCenteredCanvasText(canvas,"You're able to compile and deploy MicroPython in ESP32-CAM",line,NORMAL_TEXT_SIZE,SUBSCREEN_WIDTH)
     line += TITLE_SIZE * 1.5
     drawCenteredCanvasText(canvas,"Made by @bitstuffing with love",line,NORMAL_TEXT_SIZE,SUBSCREEN_WIDTH)
     line += TITLE_SIZE * 2
-    drawCenteredCanvasText(canvas,"Tap to Continue to show next view",line,NORMAL_TEXT_SIZE,SUBSCREEN_WIDTH)
+    drawCenteredCanvasText(canvas,"Tap to Continue to start process",line,NORMAL_TEXT_SIZE,SUBSCREEN_WIDTH)
 
     homeButtonImage = PhotoImage(file=getFilePath("button.png"))
     

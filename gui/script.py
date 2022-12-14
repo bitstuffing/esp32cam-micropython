@@ -1,5 +1,5 @@
 import tkinter
-from tkinter import Canvas, Entry, Button, PhotoImage, Label, Text
+from tkinter import Canvas, Text
 from gui.gui import *
 
 
@@ -26,7 +26,7 @@ def Script(parent):
     logbox.pack()
     
     def captureOutput():
-        p = subprocess.Popen(["./arch-compile.sh"], stdout=subprocess.PIPE)
+        p = subprocess.Popen(["sh",getFilePath("arch-compile.sh"),"--deploy"], stdout=subprocess.PIPE)
         while p.poll() is None: # process is still running
             logbox.insert("end", p.stdout.readline())
             logbox.see("end")

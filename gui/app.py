@@ -26,7 +26,7 @@ class App():
             self.section = "Welcome" 
             self.currentWindow = Home(self)
         elif buttonName == "console":
-            self.section = "Scripts" 
+            self.section = "Compile" 
             self.currentWindow = Script(self)
         self.homeButtonClick()
         
@@ -39,7 +39,7 @@ class App():
     def main(self):
         self.window = Tk()
         self.window.title("ESP32-CAM GUI")
-        self.window.iconphoto(False,tkinter.PhotoImage(file=getFilePath("micropython.png")))
+        self.window.iconphoto(False,tkinter.PhotoImage(file=getFilePath("openhardware.png")))
         self.window.geometry(str(WINDOW_WIDTH)+"x"+str(WINDOW_HEIGHT))
         self.window.configure(bg = BACKGROUND_COLOR)
 
@@ -88,7 +88,7 @@ class App():
 
         consoleButton = Button(
             self.canvas2,
-            text = "Scripts",
+            text = "Compile",
             image=buttonImage,
             borderwidth=0,
             highlightthickness=0,
