@@ -4,6 +4,7 @@ from tkinter import *
 import threading
 from gui.gui import *
 from gui.home import Home
+from gui.script import Script
 
 class App():
 
@@ -11,6 +12,7 @@ class App():
 
     global section
     global canvas
+    global canvas2
     global breadcrum
     global sidebarNavigator
     global currentWindow
@@ -18,16 +20,20 @@ class App():
 
     def handleButton(self,buttonName):
         
+        self.canvas.update_idletasks()
+
         if buttonName == "home":
-            self.homeButtonClick()
-            currentWindow = Home(self.window)
-        elif buttonName == "other_screen":
-            pass
+            self.section = "Welcome" 
+            self.currentWindow = Home(self)
+        elif buttonName == "console":
+            self.section = "Scripts" 
+            self.currentWindow = Script(self)
+        self.homeButtonClick()
         
             
     def homeButtonClick(self): 
         print("Home button clicked")
-        self.canvas.itemconfig(self.breadcrum, text=self.breadcrum)
+        self.canvas.itemconfig(self.breadcrum, text=self.section)
         self.sidebarNavigator.place(x=0, y=133)    
 
     def main(self):
@@ -36,6 +42,8 @@ class App():
         self.window.iconphoto(False,tkinter.PhotoImage(file=getFilePath("micropython.png")))
         self.window.geometry(str(WINDOW_WIDTH)+"x"+str(WINDOW_HEIGHT))
         self.window.configure(bg = BACKGROUND_COLOR)
+
+        self.section = "Welcome" 
 
         self.canvas = Canvas(
             self.window,
@@ -60,7 +68,7 @@ class App():
 
         self.canvas2.place(x = 15, y = 72)
 
-        currentWindow = Home(self.window)
+        self.currentWindow = Home(self)
 
         buttonImage = PhotoImage(file=getFilePath("button.png"))
         homeButton = Button(
@@ -93,16 +101,14 @@ class App():
         consoleButton.pack(side="top")
         consoleButton.place(x=0, y=0, relx=0.5, rely=0.25, anchor=tkinter.CENTER)
         
-        section = "Welcome" 
-
         self.sidebarNavigator = Frame(background="#FFFFFF")
         self.sidebarNavigator.place(x=0, y=133, height=47, width=7)
 
         self.breadcrum = self.canvas.create_text(
-            alignRight(WINDOW_WIDTH,len(section),SUBTITLE_SIZE),
+            alignRight(WINDOW_WIDTH,len(self.section),SUBTITLE_SIZE),
             SUBTITLE_SIZE/2,
             anchor="nw",
-            text=section,
+            text=self.section,
             fill=Color.WHITE,
             font=("Montserrat Bold", SUBTITLE_SIZE))
 

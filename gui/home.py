@@ -3,18 +3,18 @@ from tkinter import Canvas, Entry, Button, PhotoImage, Label
 from gui.gui import *
 import threading
 
-def Home(parent):
+from gui.script import Script
 
-    HOME_WIDTH = SUBSCREEN_WIDTH
-    HOME_HEIGHT = SUBSCREEN_HEIGHT
+
+def Home(parent):
 
     global homeButtonImage
 
     canvas = Canvas(
-        parent,
+        parent.window,
         bg = "#FFFFFF",
-        width = HOME_WIDTH,
-        height = HOME_HEIGHT,
+        width = SUBSCREEN_WIDTH,
+        height = SUBSCREEN_HEIGHT,
         bd = 0,
         highlightthickness = 0,
         relief = "ridge"
@@ -24,15 +24,15 @@ def Home(parent):
     line = 0
 
     line += TITLE_SIZE
-    drawCenteredCanvasText(canvas,"ESP32-CAM MicroPython GUI",line,TITLE_SIZE,HOME_WIDTH)
+    drawCenteredCanvasText(canvas,"ESP32-CAM MicroPython GUI",line,TITLE_SIZE,SUBSCREEN_WIDTH)
     line += TITLE_SIZE * 3
-    drawCenteredCanvasText(canvas,"This is a program for ESP32-CAM",line,SUBTITLE_SIZE,HOME_WIDTH)
+    drawCenteredCanvasText(canvas,"This is a program for ESP32-CAM",line,SUBTITLE_SIZE,SUBSCREEN_WIDTH)
     line += TITLE_SIZE * 4
-    drawCenteredCanvasText(canvas,"You're able to launch scripts from this console",line,NORMAL_TEXT_SIZE,HOME_WIDTH)
+    drawCenteredCanvasText(canvas,"You're able to launch scripts from this console",line,NORMAL_TEXT_SIZE,SUBSCREEN_WIDTH)
     line += TITLE_SIZE * 1.5
-    drawCenteredCanvasText(canvas,"Made by @bitstuffing with love",line,NORMAL_TEXT_SIZE,HOME_WIDTH)
+    drawCenteredCanvasText(canvas,"Made by @bitstuffing with love",line,NORMAL_TEXT_SIZE,SUBSCREEN_WIDTH)
     line += TITLE_SIZE * 2
-    drawCenteredCanvasText(canvas,"Tap to Continue to show next view",line,NORMAL_TEXT_SIZE,HOME_WIDTH)
+    drawCenteredCanvasText(canvas,"Tap to Continue to show next view",line,NORMAL_TEXT_SIZE,SUBSCREEN_WIDTH)
 
     homeButtonImage = PhotoImage(file=getFilePath("button.png"))
     
@@ -42,7 +42,7 @@ def Home(parent):
         image=homeButtonImage,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: threading.Thread(target=buttonClick,args=(parent,),daemon=True).start(),
+        command=lambda: threading.Thread(target=buttonClick,args=(parent.window,),daemon=True).start(),
         relief="flat",
         bg='#FFFFFF',
         activebackground='#FFFFFF',
@@ -51,6 +51,12 @@ def Home(parent):
     button.pack(side="top")
 
     button.place(x=0, y=0, relx=0.5, rely=0.85, anchor=tkinter.CENTER)
+
+    canvas.update()
+    parent.window.update()
+    
     
     def buttonClick(self): #TODO
         print("clicked")
+        parent.handleButton(buttonName="console")
+        

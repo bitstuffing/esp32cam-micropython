@@ -16,7 +16,7 @@ if __name__=="__main__":
     canvas.create_image(width*0.8/2, height*0.8/2, image=image)
     canvas.pack()
 
-    root.after(3000, root.destroy)
+    root.after(2000, root.destroy)
     root.mainloop()
     
     App().main()
