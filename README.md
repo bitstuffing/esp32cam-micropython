@@ -2,6 +2,8 @@
 
 Simple tools to get a fresh micropython firmware for esp32-cam.
 
+![Micropython for ESP32-CAM GUI](https://i.ibb.co/B3kgGW4/esp32-cam.png)
+
 Internally you have a script, which you're able to use, which will compile and flash a fresh micropython into an ESP32-CAM with the following ![driver](https://github.com/lemariva/micropython-camera-driver)
 
 This will be the most recently base to get your scripts working on ESP32-CAM throw Thonny or ME editor (which supports micropython and an agile development)
