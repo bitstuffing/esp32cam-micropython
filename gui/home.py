@@ -12,7 +12,7 @@ def Home(parent):
 
     canvas = Canvas(
         parent.window,
-        bg = "#FFFFFF",
+        bg = Color.WHITE,
         width = SUBSCREEN_WIDTH,
         height = SUBSCREEN_HEIGHT,
         bd = 0,
@@ -44,8 +44,8 @@ def Home(parent):
         highlightthickness=0,
         command=lambda: threading.Thread(target=buttonClick,args=(parent.window,),daemon=True).start(),
         relief="flat",
-        bg='#FFFFFF',
-        activebackground='#FFFFFF',
+        bg=Color.WHITE,
+        activebackground=Color.WHITE,
         compound='center')
     
     button.pack(side="top")

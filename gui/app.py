@@ -79,8 +79,8 @@ class App():
             highlightthickness=0,
             command=lambda: self.handleButton("home"), 
             relief="flat",
-            bg='#FFFFFF',
-            activebackground='#FFFFFF',
+            bg=Color.WHITE,
+            activebackground=Color.WHITE,
             compound='center')
         
         homeButton.pack(side="top")
@@ -94,14 +94,14 @@ class App():
             highlightthickness=0,
             command=lambda: self.handleButton("console"), 
             relief="flat",
-            bg='#FFFFFF',
-            activebackground='#FFFFFF',
+            bg=Color.WHITE,
+            activebackground=Color.WHITE,
             compound='center')
         
         consoleButton.pack(side="top")
         consoleButton.place(x=0, y=0, relx=0.5, rely=0.25, anchor=tkinter.CENTER)
         
-        self.sidebarNavigator = Frame(background="#FFFFFF")
+        self.sidebarNavigator = Frame(background=Color.WHITE)
         self.sidebarNavigator.place(x=0, y=133, height=47, width=7)
 
         self.breadcrum = self.canvas.create_text(

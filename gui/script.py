@@ -11,7 +11,7 @@ def Script(parent):
 
     canvas = Canvas(
         parent.window,
-        bg = "#FFFFFF",
+        bg = Color.WHITE,
         width = SUBSCREEN_WIDTH,
         height = SUBSCREEN_HEIGHT,
         bd = 0,
