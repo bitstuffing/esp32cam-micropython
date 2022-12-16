@@ -7,32 +7,44 @@ import subprocess
 from threading import Thread
 from queue import Queue, Empty
 
-def Script(parent):
+class Script():
 
-    canvas = Canvas(
-        parent.window,
-        bg = Color.WHITE,
-        width = SUBSCREEN_WIDTH,
-        height = SUBSCREEN_HEIGHT,
-        bd = 0,
-        highlightthickness = 0,
-        relief = "ridge"
-    )
+    def __init__(self,parent):
+        self.parent = parent
 
-    canvas.place(x = 230, y = 72)
-    line = 0
 
-    logbox = Text(canvas, width=96, height=27)
-    logbox.pack()
+    def draw(self):
+
+        canvas = Canvas(
+            self.parent.window,
+            bg = Color.WHITE,
+            width = SUBSCREEN_WIDTH,
+            height = SUBSCREEN_HEIGHT,
+            bd = 0,
+            highlightthickness = 0,
+            relief = "ridge"
+        )
+
+        canvas.place(x = 230, y = 72)
+        line = 0
+
+        self.logbox = Text(canvas, width=96, height=27)
+        self.logbox.pack()
+
+        threading.Thread(target=self.captureOutput, daemon=True).start()
+
+        return canvas
     
-    def captureOutput():
+    def captureOutput(self):
         p = subprocess.Popen(["sh",getFilePath("arch-compile.sh"),"--deploy"], stdout=subprocess.PIPE)
         while p.poll() is None: # process is still running
-            logbox.insert("end", p.stdout.readline())
-            logbox.see("end")
-        logbox.insert("end", "--- done ---\n")
+            line = p.stdout.readline()
+            while line:
+                self.logbox.insert("end", line)
+                line = p.stdout.readline()
+                self.logbox.see("end")
+        self.logbox.insert("end", "--- done ---\n")
 
-    threading.Thread(target=captureOutput, daemon=True).start()
 
 
     

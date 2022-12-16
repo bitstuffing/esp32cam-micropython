@@ -8,15 +8,15 @@ from gui.script import Script
 
 class App():
 
-    global window
+    window = None
 
-    global section
-    global canvas
-    global canvas2
-    global breadcrum
-    global sidebarNavigator
-    global currentWindow
-    global section
+    section = None
+    canvas = None
+    canvas2 = None
+    breadcrum = None
+    sidebarNavigator = None
+    currentWindow = None
+    section = None
 
     def handleButton(self,buttonName):
         
@@ -24,10 +24,10 @@ class App():
 
         if buttonName == "home":
             self.section = "Welcome" 
-            self.currentWindow = Home(self)
+            self.currentWindow = Home(self).draw()
         elif buttonName == "console":
             self.section = "Compile" 
-            self.currentWindow = Script(self)
+            self.currentWindow = Script(self).draw()
         self.homeButtonClick()
         
             
@@ -68,7 +68,7 @@ class App():
 
         self.canvas2.place(x = 15, y = 72)
 
-        self.currentWindow = Home(self)
+        self.currentWindow = Home(self).draw()
 
         buttonImage = PhotoImage(file=getFilePath("button.png"))
         homeButton = Button(
