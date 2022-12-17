@@ -11,21 +11,20 @@ class Script():
 
     def __init__(self,parent):
         self.parent = parent
-
-
+    
     def draw(self):
 
         canvas = Canvas(
-            self.parent.window,
+            self.parent.frame,
             bg = Color.WHITE,
-            width = SUBSCREEN_WIDTH,
             height = SUBSCREEN_HEIGHT,
+            width = WINDOW_WIDTH-SUBSCREEN_WIDTH - 60,
             bd = 0,
             highlightthickness = 0,
-            relief = "ridge"
+            relief = tkinter.RIDGE
         )
 
-        canvas.place(x = 230, y = 72)
+        canvas.place(x = 0, y = 0)
         line = 0
 
         self.logbox = Text(canvas, width=96, height=27)

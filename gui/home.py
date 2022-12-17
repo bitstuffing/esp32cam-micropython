@@ -11,22 +11,28 @@ class Home():
     def __init__(self,parent):
         self.parent = parent
 
+    def clearFrame(self):
+        for widgets in self.parent.frame.winfo_children():
+            widgets.destroy()
+
 
     def draw(self):
+
+        self.clearFrame()
 
         global homeButtonImage
 
         canvas = Canvas(
-            self.parent.window,
+            self.parent.frame,
             bg = Color.WHITE,
             width = SUBSCREEN_WIDTH,
             height = SUBSCREEN_HEIGHT,
             bd = 0,
             highlightthickness = 0,
-            relief = "ridge"
+            relief = tkinter.RIDGE
         )
 
-        canvas.place(x = 230, y = 72)
+        canvas.place(x = 0, y = 0)
         line = 0
 
         line += TITLE_SIZE
@@ -49,12 +55,12 @@ class Home():
             borderwidth=0,
             highlightthickness=0,
             command=lambda: threading.Thread(target=self.buttonClick,daemon=True).start(),
-            relief="flat",
+            relief=tkinter.FLAT,
             bg=Color.WHITE,
             activebackground=Color.WHITE,
-            compound='center')
+            compound=tkinter.CENTER)
         
-        button.pack(side="top")
+        button.pack(side=tkinter.TOP)
 
         button.place(x=0, y=0, relx=0.5, rely=0.85, anchor=tkinter.CENTER)
 

@@ -30,7 +30,7 @@ def findXCenter(canvas, item, windowWidth):
 
 def drawCenteredCanvasText(canvas,text,line,size,totalWidth):
     textCanvasId = canvas.create_text(0,0,
-        anchor="nw",
+        anchor=tkinter.NW,
         text=text,
         fill=Color.BLACK,
         font=("Montserrat Bold", size)
