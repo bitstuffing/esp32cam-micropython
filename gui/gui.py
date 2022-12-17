@@ -1,6 +1,7 @@
 from PIL import Image
 from pathlib import Path
 import threading
+import tkinter
 
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = OUTPUT_PATH / Path("../assets")
