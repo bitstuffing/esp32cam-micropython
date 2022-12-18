@@ -57,10 +57,10 @@ class App():
         self.sidebarNavigator.place(x=15, y=15, width=WINDOW_WIDTH-40, height=TITLE_SIZE*2)
         #MAIN FRAME - content
         self.frame = Frame(self.window)
-        self.frame.place(x=230, y=72, width=SUBSCREEN_WIDTH, height=SUBSCREEN_HEIGHT)
+        self.frame.place(x=FRAME_DOWN_X, y=FRAME_DOWN_Y, width=SUBSCREEN_WIDTH, height=SUBSCREEN_HEIGHT)
         #LEFT FRAME - menu
         self.frame2 = Frame(self.window)
-        self.frame2.place(x=15, y=72, width=WINDOW_WIDTH-SUBSCREEN_WIDTH - 60, height=SUBSCREEN_HEIGHT)
+        self.frame2.place(x=15, y=FRAME_DOWN_Y, width=WINDOW_WIDTH-SUBSCREEN_WIDTH - 60, height=SUBSCREEN_HEIGHT)
 
         ## DRAW GLOBALS
 
